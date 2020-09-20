@@ -32,21 +32,42 @@ router.post("/login", (req, res) => {
   const creds = req.body;
 
   if (User.loginIsValid(creds)) {
-    console.log({ username: creds.username });
-    User.findBy({ username: creds.username })
-      .then(([user]) => {
-        // compare the password the hash stored in the database
-        if (user && bcryptjs.compareSync(creds.password, user.password)) {
-          const token = makeJwt(user);
+    if (creds.username) {
+      console.log("logging in by username");
 
-          res.status(200).json({ message: "Welsome to our API", token });
-        } else {
-          res.status(401).json({ message: "Invalid credentials" });
-        }
-      })
-      .catch((error) => {
-        res.status(500).json({ message: error.message });
-      });
+      User.findBy({ username: creds.username })
+        .then(([user]) => {
+          // compare the password the hash stored in the database
+          if (user && bcryptjs.compareSync(creds.password, user.password)) {
+            const token = makeJwt(user);
+
+            res.status(200).json({ message: "Welsome to our API", token });
+          } else {
+            res.status(401).json({ message: "Invalid credentials" });
+          }
+        })
+        .catch((error) => {
+          res.status(500).json({ message: error.message });
+        });
+    }
+    if (creds.email) {
+      console.log("logging in by email");
+
+      User.findBy({ email: creds.email })
+        .then(([user]) => {
+          // compare the password the hash stored in the database
+          if (user && bcryptjs.compareSync(creds.password, user.password)) {
+            const token = makeJwt(user);
+
+            res.status(200).json({ message: "Welsome to our API", token });
+          } else {
+            res.status(401).json({ message: "Invalid credentials" });
+          }
+        })
+        .catch((error) => {
+          res.status(500).json({ message: error.message });
+        });
+    }
   } else {
     res.status(400).json({
       message:
