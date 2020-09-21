@@ -8,6 +8,7 @@ module.exports = {
   loginIsValid,
 };
 
+
 function add(user) {
   return db("user")
     .insert(user)
