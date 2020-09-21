@@ -4,7 +4,7 @@ const cors = require("cors");
 
 const authRouter = require("../auth/auth-router");
 const userRouter = require("../user/user-router");
-// const restricted = require('../auth/restricted-middleware')
+const howToRouter = require("../howto/howto-router");
 // const checkRole = require("../auth/check-role-middleware")
 
 const server = express();
@@ -20,6 +20,7 @@ server.use(
 
 server.use("/", authRouter);
 server.use("/user", userRouter);
+server.use('/howto', howToRouter)
 
 server.get("/", (req, res) => {
   res.json({ api: "up" });
