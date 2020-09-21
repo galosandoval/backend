@@ -9,6 +9,7 @@ function validateUserId(req, res, next) {
   const id = req.params.id;
   User.findById(id)
     .then((user) => {
+      console.log(user);
       if (user) {
         req.user = user;
         next();
@@ -23,13 +24,11 @@ function validateUserId(req, res, next) {
 }
 
 function validateUser(req, res, next) {
-  const {username, password, email} = req.body;
+  const { username, email, password } = req.body;
   console.log(req.body.username);
-  if (!password){
-    res
-      .status(400)
-      .json({ error: "missing username, email or password" })
-      .end();
+  if (!username || !email || !password) {
+    res.status(400).json({ message: "missing username, email or password" });
+  } else {
+    next();
   }
-  next();
 }

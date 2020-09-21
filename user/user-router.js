@@ -34,10 +34,9 @@ router.put("/:id", validateUserId, validateUser, (req, res) => {
 
   User.update(id, { ...changes, password: hash })
     .then((user) => {
-      res.status(200).json({
-        message: `User with the id ${id} was successfully changed`,
-        user,
-      });
+      res
+        .status(200)
+        .json({ message: `User with the id ${id} was successfully changed` });
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });
