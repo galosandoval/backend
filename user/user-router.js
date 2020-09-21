@@ -43,7 +43,7 @@ router.put("/:id", validateUserId, validateUser, (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", validateUserId, (req, res) => {
   const id = req.params.id;
 
   User.remove(id)
