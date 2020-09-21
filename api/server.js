@@ -22,7 +22,7 @@ server.use("/api", authRouter);
 // server.use("/api/users", usersRouter);
 
 server.get("/", (req, res) => {
-  res.json({ api: "up" });
+  res.send(`<h2>sup</h2>`);
 });
 
 module.exports = server;
