@@ -71,5 +71,7 @@ exports.seed = function (knex) {
       description: "Wait 1 to 3 days for your test results.",
     },
   ];
-  return knex('steps').insert(steps).then(()=>console.log("\n== Seed data for steps table added. ==\n"))
+  return knex("steps")
+    .insert(steps)
+    .then(() => console.log("\n== Seed data for steps table added. ==\n"));
 };

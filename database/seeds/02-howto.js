@@ -25,5 +25,7 @@ exports.seed = function (knex) {
         "To see if you’ve had COVID-19 in the past, you can get an antibody test from your local healthcare provider. ",
     },
   ];
-  return knex('howto').insert(howto).then(() => console.log("\n== Seed data for howto table added. ==\n"))
+  return knex("howto")
+    .insert(howto)
+    .then(() => console.log("\n== Seed data for howto table added. ==\n"));
 };
