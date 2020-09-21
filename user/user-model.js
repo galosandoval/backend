@@ -5,8 +5,9 @@ module.exports = {
   find,
   findBy,
   findById,
-  registerIsValid,
   loginIsValid,
+  registerIsValid,
+  update,
 };
 
 function add(user) {
@@ -29,6 +30,13 @@ function findById(id) {
   return db("user").where({ id }).first();
 }
 
+function loginIsValid(user) {
+  return Boolean(
+    (user.username && user.password && typeof user.password === "string") ||
+      (user.email && user.password && typeof user.password === "string")
+  );
+}
+
 function registerIsValid(user) {
   return Boolean(
     user.username &&
@@ -38,9 +46,6 @@ function registerIsValid(user) {
   );
 }
 
-function loginIsValid(user) {
-  return Boolean(
-    (user.username && user.password && typeof user.password === "string") ||
-      (user.email && user.password && typeof user.password === "string")
-  );
+function update(id, change) {
+  return db("user").where({ id }).update(change);
 }
