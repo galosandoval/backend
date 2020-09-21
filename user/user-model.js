@@ -2,19 +2,23 @@ const db = require("../database/connection");
 
 module.exports = {
   add,
+  find,
   findBy,
   findById,
   registerIsValid,
   loginIsValid,
 };
 
-
 function add(user) {
   return db("user")
-    .insert(user, 'id')
+    .insert(user, "id")
     .then(([id]) => {
       return findById(id);
     });
+}
+
+function find() {
+  return db("user").orderBy("id");
 }
 
 function findBy(filter) {

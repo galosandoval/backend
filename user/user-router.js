@@ -1,0 +1,15 @@
+const router = require('express').Router()
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const User = require("./user-model");
+
+router.get('/', (req,res)=>{
+  User.find().then(found=>{
+    res.status(200).json(found)
+  }).catch(error => {
+    res.status(500).json({error:error.message})
+  })
+})
+
+
+module.exports = router
