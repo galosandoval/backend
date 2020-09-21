@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bcryptjs = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const User = require("./user-model");
+const { validateUserId, validateUser } = require("./user-middleware");
 
 router.get("/", (req, res) => {
   User.find()
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", validateUserId, (req, res) => {
   const id = req.params.id;
   User.findById(id)
     .then((user) => {
@@ -24,7 +24,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", validateUserId, validateUser, (req, res) => {
   const id = req.params.id;
   const changes = req.body;
   const password = req.body.password;
@@ -34,12 +34,22 @@ router.put("/:id", (req, res) => {
 
   User.update(id, { ...changes, password: hash })
     .then((user) => {
-      res
-        .status(200)
-        .json({
-          message: `User with the id ${id} was successfully changed`,
-          user,
-        });
+      res.status(200).json({
+        message: `User with the id ${id} was successfully changed`,
+        user,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error.message });
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+
+  User.remove(id)
+    .then((deleted) => {
+      res.status(204).end();
     })
     .catch((error) => {
       res.status(500).json({ error: error.message });

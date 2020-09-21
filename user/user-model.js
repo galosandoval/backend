@@ -7,6 +7,7 @@ module.exports = {
   findById,
   loginIsValid,
   registerIsValid,
+  remove,
   update,
 };
 
@@ -46,6 +47,10 @@ function registerIsValid(user) {
   );
 }
 
+function remove(id) {
+  return db("user").where("id", id).del();
+}
+
 function update(id, change) {
-  return db("user").where({ id }).update(change);
+  return db("user").where("id", id).update(change);
 }
