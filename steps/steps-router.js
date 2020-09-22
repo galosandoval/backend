@@ -25,7 +25,7 @@ router.get("/:id", validateStepId, (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", validateStep,(req, res) => {
   const newHowto = req.body;
   Steps.add(newHowto)
     .then((addition) => {
