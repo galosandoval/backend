@@ -9,6 +9,7 @@ module.exports = {
   registerIsValid,
   remove,
   update,
+  findUserHowto,
 };
 
 function add(user) {
@@ -53,4 +54,11 @@ function remove(id) {
 
 function update(id, change) {
   return db("user").where("id", id).update(change);
+}
+
+function findUserHowto(id) {
+  return db("user")
+    .join("howto", "howto.user_id", "user.id")
+    .select("user.username", "user.email", "howto.title")
+    .where("user.id", id);
 }
