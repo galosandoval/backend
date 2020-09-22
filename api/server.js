@@ -6,7 +6,7 @@ const authRouter = require("../auth/auth-router");
 const userRouter = require("../user/user-router");
 const howToRouter = require("../howto/howto-router");
 const stepsToRouter = require("../steps/steps-router");
-// const requiresToken = require('../auth/restricted-middleware')
+const requiresToken = require('../auth/restricted-middleware')
 
 const server = express();
 
@@ -20,9 +20,9 @@ server.use(
 );
 
 server.use("/", authRouter);
-server.use("/user", userRouter);
-server.use('/howto', howToRouter)
-server.use('/steps', stepsToRouter)
+server.use("/user", requiresToken, userRouter);
+server.use('/howto', requiresToken, howToRouter)
+server.use('/steps', requiresToken, stepsToRouter)
 
 server.get("/", (req, res) => {
   res.json({ api: "up" });
