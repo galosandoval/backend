@@ -190,174 +190,223 @@ Returns:
 }
 ```
 
-### GET /api/users
+### GET /howto/:id
+Returns:
+```
+{
+    "howto": {
+        "id": 1,
+        "title": "How to Register to Vote",
+        "category": "Voting",
+        "description": "If you're eligible, it's part of your civic duty to vote on Election Day. ",
+        "user_id": 1
+    }
+}
+```
+
+### GET /howto/:id/steps
+Returns:
+```
+[
+    {
+        "title": "How to Register to Vote",
+        "category": "Voting",
+        "step": "Follow the registration guidelines for the state you live and will vote in."
+    },
+    {
+        "title": "How to Register to Vote",
+        "category": "Voting",
+        "step": "Confirm you're eligible to vote based on your age and citizenship status."
+    },
+    {
+        "title": "How to Register to Vote",
+        "category": "Voting",
+        "step": "Check your state's additional eligibility laws"
+    },
+    {
+        "title": "How to Register to Vote",
+        "category": "Voting",
+        "step": "Note your state's registration deadline"
+    }
+]
+```
+
+### GET /steps
+Returns:
+```
+{
+    "steps": [
+        {
+            "id": 1,
+            "howto_id": 1,
+            "description": "Follow the registration guidelines for the state you live and will vote in."
+        },
+        {
+            "id": 2,
+            "howto_id": 1,
+            "description": "Confirm you're eligible to vote based on your age and citizenship status."
+        },
+        {
+            "id": 3,
+            "howto_id": 1,
+            "description": "Check your state's additional eligibility laws"
+        },
+        {
+            "id": 4,
+            "howto_id": 1,
+            "description": "Note your state's registration deadline"
+        },
+        {
+            "id": 5,
+            "howto_id": 2,
+            "description": "Pick your starter. Your starter Pokémon is the core of your party (generally). "
+        },
+        {
+            "id": 6,
+            "howto_id": 2,
+            "description": "Learn about your party."
+        },
+        {
+            "id": 7,
+            "howto_id": 2,
+            "description": "Practice different movesets on all the Pokémon. Also, it might not be best to have all legendaries. Use good Pokémon that you like."
+        },
+    ]
+}
+```
+
+### GET /steps/:id
+Returns:
+```
+{
+    "steps": {
+        "id": 1,
+        "howto_id": 1,
+        "description": "Follow the registration guidelines for the state you live and will vote in."
+    }
+}
+```
+
+### GET /user/
 Returns:
 ```
 {
     "users": [
         {
             "id": 1,
-            "username": "user",
-            "password": "$2a$08$E1Mb2BVrVHK58uLzBXqLMe26YxPfCr6cZv9R8e/mQU149KRbt5lSy",
-            "isAdmin": false
+            "username": "thisishowwedo",
+            "email": "thisishowwedo@gmail.com",
+            "password": "password"
         },
         {
             "id": 2,
-            "username": "admin",
-            "password": "$2a$08$8VcxZDSmdRdn84DQFKvlxeGyoBgSM5DWC/k8kpKSpfIjUKoym3cqK",
-            "isAdmin": true
+            "username": "gottacatchemall",
+            "email": "gottacatchemall@gmail.com",
+            "password": "password"
         },
-        {
-            "id": 3,
-            "username": "christian",
-            "password": "$2a$08$OjzHVTJ4aHSp5Um0Rbx4pOSFMAwo4N6HyWxsZYZvCbSqHeah/phZe",
-            "isAdmin": true
-        },
-        {
-            "id": 4,
-            "username": "dave",
-            "password": "$2a$08$TYVHWtzV4ffoFuKvBIW7r.nBs0dP7bcx1IY5rBwsOgxx84JXqlrze",
-            "isAdmin": false
-        },
-        {
-            "id": 5,
-            "username": "dave1",
-            "password": "$2a$08$.gzYBf9eeb/OsQEhsFWHF.HR1nO9AAEudBKyQqHzTD28GCiZ/O0lW",
-            "isAdmin": true
-        },
-        {
-            "id": 6,
-            "username": "example",
-            "password": "$2a$08$Swr0TBG39oQS.S5QWWbbre/A6VtKH32/bk0Vr1nUD5vgDnkFtbQy.",
-            "isAdmin": true
-        },
-        {
-            "id": 7,
-            "username": "example2",
-            "password": "$2a$08$21MSmMRVC6E8rgaxzpmjtewo.WrjsCu9C0c6bLgKTI7QKBqED7tYe",
-            "isAdmin": false
-        }
     ]
 }
 ```
 
-### GET /api/users/:id
+### GET /user/:id
 Returns:
 ```
 {
     "user": {
-        "id": 3,
-        "username": "christian",
-        "password": "$2a$08$OjzHVTJ4aHSp5Um0Rbx4pOSFMAwo4N6HyWxsZYZvCbSqHeah/phZe",
-        "isAdmin": true
-    }
-}
-```
-
-### GET /api/howtos/:id
-Returns:
-```
-{
-    "howto": {
         "id": 1,
-        "title": "How to Win a Game of Chess",
-        "author": "christian",
-        "user_id": 3,
-        "category": "games",
-        "content": "Step 1: Tell your opponent that you are a grand master in order to psych them out. Step 2: If your opponent calls your bluff, try your best to win. Step 3: If you start getting close to losing, flip the board and say that you're late for a chess meeting. Step 4: Checkmate."
+        "username": "thisishowwedo",
+        "email": "thisishowwedo@gmail.com",
+        "password": "password"
     }
 }
 ```
 
-### GET /api/users/:id/howtos
+### GET /user/:id/howto
 Returns:
 ```
 {
-    "howtos": [
+    "userHowto": [
         {
-            "title": "test",
-            "author": "admin",
-            "user_id": 2,
-            "category": "test",
-            "content": "test"
+            "username": "thisishowwedo",
+            "email": "thisishowwedo@gmail.com",
+            "title": "How to Register to Vote"
+        },
+        {
+            "username": "thisishowwedo",
+            "email": "thisishowwedo@gmail.com",
+            "title": "How to Find Out if You Have Already Had Coronavirus"
+        },
+        {
+            "username": "thisishowwedo",
+            "email": "thisishowwedo@gmail.com",
+            "title": "New how to"
         }
     ]
 }
 ```
 
-### PUT /api/users/:id
+### PUT /howto/:id
 Request body:
 ```
 {
-    "username": "christian39",
-    "password": "testing",
-    "isAdmin": true
+    "user_id":"2",
+    "title":"testing",
+    "category":"test",
+    "description":"test"
 }
 ```
 Returns:
 ```
 {
-    "message": "User with id 5 updated successfully",
-    "user": {
-        "id": 5,
-        "username": "christian39",
-        "password": "testing",
-        "isAdmin": true
-    }
+    "message": "Howto with the id 1 was successfully changed"
 }
 ```
 
-### PUT /api/howtos/:id
+### PUT /steps/:id
 Request body:
 ```
 {
-    "user_id": 2,
-    "title": "testing",
-    "category": "testing",
-    "content": "testing"
+    "howto_id":"3",
+    "description":"testing"
 }
 ```
 Returns:
 ```
 {
-    "message": "Howto with id 7 successfully updated",
-    "howto": {
-        "id": 7,
-        "title": "testing",
-        "author": "admin",
-        "user_id": 2,
-        "category": "testing",
-        "content": "testing"
-    }
+    "message": "Step with the id 1 was successfully changed"
 }
 ```
 
-### DELETE /api/users/:id
+### PUT /user/:id
+Request body:
+```
+{
+    "username":"changed",
+    "email":"change@test.com",
+    "password":"password123"
+}
+```
 Returns:
 ```
 {
-    "message": "User with id 7 successfully deleted",
-    "deletedUser": {
-        "id": 7,
-        "username": "example2",
-        "password": "$2a$08$21MSmMRVC6E8rgaxzpmjtewo.WrjsCu9C0c6bLgKTI7QKBqED7tYe",
-        "isAdmin": false
-    }
+    "message": "User with the id 4 was successfully changed"
 }
 ```
 
-### DELETE /api/howtos/:id
+### DELETE /howto/:id
 Returns:
 ```
-{
-    "message": "Howto with id 7 deleted successfully",
-    "deletedHowto": {
-        "id": 7,
-        "title": "testing",
-        "author": "admin",
-        "user_id": 2,
-        "category": "testing",
-        "content": "testing"
-    }
-}
+status 204
+```
+
+### DELETE /steps/:id
+Returns:
+```
+status 204
+```
+
+### DELETE /user/:id
+Returns:
+```
+status 204
 ```

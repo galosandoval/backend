@@ -37,7 +37,7 @@ router.get("/:id/steps", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", validateHowto, (req, res) => {
   const newHowto = req.body;
   Howto.add(newHowto)
     .then((addition) => {
