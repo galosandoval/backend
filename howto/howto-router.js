@@ -25,13 +25,17 @@ router.get("/:id", validateHowtoId, (req, res) => {
     });
 });
 
-router.get('/:id/steps', (req,res)=>{
-  const id = req.params.id
+router.get("/:id/steps", (req, res) => {
+  const id = req.params.id;
 
-  Howto.findHowToSteps(id).then(howto_steps =>{
-    res.status(200).json(howto_steps)
-  })
-})
+  Howto.findHowToSteps(id)
+    .then((howto_steps) => {
+      res.status(200).json(howto_steps);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error.message });
+    });
+});
 
 router.post("/", (req, res) => {
   const newHowto = req.body;

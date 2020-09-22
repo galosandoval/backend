@@ -24,6 +24,13 @@ router.get("/:id", validateUserId, (req, res) => {
     });
 });
 
+router.get('/:id/howto', (req,res)=>{
+  const id = req.params.id
+  User.findUserHowto(id).then(userHowto =>{
+    res.status(200).json({userHowto})
+  })
+})
+
 router.put("/:id", validateUserId, validateUser, (req, res) => {
   const id = req.params.id;
   const changes = req.body;
