@@ -5,6 +5,7 @@ const User = require("../user/user-model");
 
 router.post("/register", (req, res) => {
   const creds = req.body;
+
   if (User.registerIsValid(creds)) {
     const rounds = process.env.BCRYPT_ROUNDS || 8;
 
