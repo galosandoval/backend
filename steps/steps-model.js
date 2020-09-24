@@ -1,20 +1,12 @@
 const db = require("../database/connection");
 
-module.exports = {
-  add,
-  find,
-  findBy,
-  findById,
-  remove,
-  update,
-};
 
 function add(steps) {
   return db("steps")
-    .insert(steps, "id")
-    .then(([id]) => {
-      return findById(id);
-    });
+  .insert(steps, "id")
+  .then(([id]) => {
+    return findById(id);
+  });
 }
 
 const add = async (steps) => {
@@ -42,3 +34,11 @@ function update(id, change) {
   return db("steps").where({id}).update(change);
 }
 
+module.exports = {
+  add,
+  find,
+  findBy,
+  findById,
+  remove,
+  update,
+};
