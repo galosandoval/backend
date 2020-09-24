@@ -5,8 +5,10 @@ module.exports = {
   find,
   findBy,
   findById,
+  findSteps,
   findHowToSteps,
   remove,
+  removeSteps,
   update,
 };
 
@@ -28,6 +30,14 @@ function findBy(filter) {
 
 function findById(id) {
   return db("howto").where("id", id).first();
+}
+
+function findSteps(id) {
+  return db('steps').where('howto.id')
+}
+
+function removeSteps(id) {
+  return db('steps').where('id', id).del()
 }
 
 function remove(id) {

@@ -20,19 +20,22 @@ module.exports = {
     useNullAsDefault: true,
   },
 
-  staging: {
-    client: "postgresql",
+  testing: {
+    client: "sqlite3",
     connection: {
-      database: "my_db",
-      user: "username",
-      password: "password",
-    },
-    pool: {
-      min: 2,
-      max: 10,
+      filename: "./database/test.db3",
     },
     migrations: {
-      tableName: "knex_migrations",
+      directory: "./database/migrations",
+    },
+    seeds: {
+      directory: "./database/seeds",
+    },
+    useNullAsDefault: true,
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run("PRAGMA foreign_keys = ON", done);
+      },
     },
   },
 

@@ -23,7 +23,7 @@ exports.up = function (knex) {
         .unsigned()
         .notNullable()
         .references("user.id")
-        .onDelete("RESTRICT")
+        .onDelete("CASCADE")
         .onUpdate("CASCADE");
     })
     .createTable("steps", (tbl) => {
@@ -34,7 +34,7 @@ exports.up = function (knex) {
         .unsigned()
         .notNullable()
         .references("howto.id")
-        .onDelete("RESTRICT")
+        .onDelete("CASCADE")
         .onUpdate("CASCADE");
 
       tbl.string("description", 200).notNullable();
