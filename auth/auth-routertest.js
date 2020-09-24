@@ -4,11 +4,11 @@ const db = require("../database/connection");
 
 describe("auth routes", () => {
   beforeEach(async () => {
-    await db("user").del();
+    await db("user").truncate();
   });
 
   afterEach(async () => {
-    await db("user").del();
+    await db("user").truncate();
   });
   describe("POST /register", () => {
     it("should add a new user", async () => {
@@ -39,7 +39,7 @@ describe("auth routes", () => {
         
         const res = await request(server)
         .post("/register")
-        .send({ username: "christian" });
+        .send({ username: "galo" });
         
         // console.log('auth res.body', res.body)
       expect(res.body.message).toMatch(/please provide your email, username, and password/i);
