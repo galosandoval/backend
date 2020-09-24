@@ -9,7 +9,7 @@ function validateHowtoId(req, res, next) {
   const id = req.params.id;
   Howto.findById(id)
     .then((howto) => {
-      console.log(howto);
+      // console.log(howto);
       if (howto) {
         req.howto = howto;
         next();
@@ -18,14 +18,14 @@ function validateHowtoId(req, res, next) {
       }
     })
     .catch((error) => {
-      console.log(error);
+      // console.log(error);
       res.status(500).json({ message: "Error 500!!!" });
     });
 }
 
 function validateHowto(req, res, next) {
   const { user_id, title, category, description } = req.body;
-  console.log(req.body.username);
+  // console.log(req.body.username);
   if (!user_id || !title || !category || !description) {
     res.status(400).json({ message: "missing user_id, title, category or description" });
   } else {

@@ -68,7 +68,6 @@ router.put("/:id", validateHowtoId, validateHowto, (req, res) => {
 router.delete("/:id", validateHowtoId, (req, res) => {
   const id = req.params.id;
 
-  Howto.findSteps(id).del()
   Howto.remove(id)
     .then((deleted) => {
       res.status(204).end();

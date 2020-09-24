@@ -34,7 +34,7 @@ router.post("/login", (req, res) => {
 
   if (User.loginIsValid(creds)) {
     if (creds.username) {
-      console.log("logging in by username");
+      // console.log("logging in by username");
 
       User.findBy({ username: creds.username })
         .then(([user]) => {
@@ -52,7 +52,7 @@ router.post("/login", (req, res) => {
         });
     }
     if (creds.email) {
-      console.log("logging in by email");
+      // console.log("logging in by email");
 
       User.findBy({ email: creds.email })
         .then(([user]) => {
