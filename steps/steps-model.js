@@ -1,14 +1,6 @@
 const db = require("../database/connection");
 
 
-function add(steps) {
-  return db("steps")
-  .insert(steps, "id")
-  .then(([id]) => {
-    return findById(id);
-  });
-}
-
 const add = async (steps) => {
   const [id] = await db('steps').insert(steps).returning('id')
   return findById(id)
