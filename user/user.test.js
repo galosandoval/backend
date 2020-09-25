@@ -49,7 +49,7 @@ describe("user router", () => {
         .set({ authorization: token })
         .then((res) => {
           console.log("this is the res.body for userHowto", res.body);
-          expect(res.body.userHowto).toBe();
+          expect(res.body.userHowto).toHaveLength(2);
         });
     });
   });
@@ -105,7 +105,7 @@ describe("user router", () => {
         .then((res) => {
           expect(res.status).toBe(204);
           console.log("this is the res.body for DELETE", res.body);
-          expect(res.body);
+          expect(res.body).toHaveLength(0);
         });
     });
   });
