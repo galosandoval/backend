@@ -17,7 +17,7 @@ router.post("/register", (req, res) => {
       .then((user) => {
         const token = makeJwt(user);
 
-        res.status(201).json({ data: user, token }); // if you want to log someone in after they register
+        res.status(201).json({ data: user }); // if you want to log someone in after they register
       })
       .catch((error) => {
         res.status(500).json({ message: error.message });

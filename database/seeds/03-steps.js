@@ -73,5 +73,5 @@ exports.seed = function (knex) {
   ];
   return knex("steps")
     .insert(steps)
-    .then(() => console.log("\n== Seed data for steps table added. ==\n"));
+    // .then(() => console.log("\n== Seed data for steps table added. ==\n"));
 };

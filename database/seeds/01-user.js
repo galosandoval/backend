@@ -15,5 +15,5 @@ exports.seed = function (knex) {
   ];
   return knex("user")
     .insert(users)
-    .then(() => console.log("\n== Seed data for user table added. ==\n"));
+    // .then(() => console.log("\n== Seed data for user table added. ==\n"));
 };

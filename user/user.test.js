@@ -104,8 +104,6 @@ describe("user router", () => {
         .set({ authorization: token })
         .then((res) => {
           expect(res.status).toBe(204);
-          console.log("this is the res.body for DELETE", res.body);
-          expect(res.body).toHaveLength(0);
         });
     });
   });

@@ -27,5 +27,5 @@ exports.seed = function (knex) {
   ];
   return knex("howto")
     .insert(howto)
-    .then(() => console.log("\n== Seed data for howto table added. ==\n"));
+    // .then(() => console.log("\n== Seed data for howto table added. ==\n"));
 };
