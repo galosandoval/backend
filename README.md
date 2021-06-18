@@ -3,7 +3,7 @@ How-To-Life-Hacker
 
 ## Documentation
 
-Base URL for deployed API: https://life-hacker-backend.herokuapp.com/
+Base URL for deployed API: https://databackend.herokuapp.com/
 
 ## **Endpoints**
 
