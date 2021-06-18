@@ -4,7 +4,6 @@ const router = express.Router();
 
 router.post("/", (req, res) => {
   const string = req.body["string_to_cut"];
-  console.log(string)
 
   const reduceString = (stringToCut) => {
     let trimmedString = stringToCut.trim().replace(/ /g, "");
